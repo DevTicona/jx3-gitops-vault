@@ -1,0 +1,26 @@
+filepath: ""
+namespace: jx-vault
+repositories:
+- name: bank-vaults
+  url: ghcr.io/bank-vaults/helm-charts
+  oci: true
+- name: jxgh
+  url: https://jenkins-x-charts.github.io/repo
+releases:
+- chart: bank-vaults/vault-operator
+  name: vault-operator
+  version: 1.22.3
+  forceNamespace: ""
+  skipDeps: null
+- chart: jxgh/vault-instance
+  version: 1.0.28
+  name: vault-instance
+  values:
+  - bankVaultsImage: ghcr.io/bank-vaults/bank-vaults:v1.31.2
+    ingress:
+      enabled: false
+  forceNamespace: ""
+  skipDeps: null
+templates: {}
+missingFileHandler: ""
+renderedvalues: {}
